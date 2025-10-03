@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Classement - Quiz Concours Côte d'Ivoire</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <h1>🏆 Classement</h1>
+      </div>
+      <nav>
+        <a href="index.html">Accueil</a>
+        <a href="stats.html">Mes Stats</a>
+        <a href="ranking.html" class="active">Classement</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="stats-container">
+        <div class="ranking-header">
+          <h2>Classement Global</h2>
+          <div class="ranking-filters">
+            <button class="filter-btn active" data-filter="all">Tous</button>
+            <button class="filter-btn" data-filter="week">Cette Semaine</button>
+            <button class="filter-btn" data-filter="month">Ce Mois</button>
+          </div>
+        </div>
+
+        <div id="ranking-container">
+          <!-- Le classement sera chargé ici par JavaScript -->
+        </div>
+      </div>
+
+      <div class="stats-container">
+        <h2>Votre Position</h2>
+        <div id="user-ranking-container">
+          <!-- La position de l'utilisateur sera chargée ici -->
+        </div>
+      </div>
+
+      <div class="stats-container">
+        <h2>Classement par Catégorie</h2>
+        <div class="category-tabs">
+          <button class="category-tab active" data-category="all">
+            Toutes Catégories
+          </button>
+          <button class="category-tab" data-category="ena">ENA</button>
+          <button class="category-tab" data-category="ens">ENS</button>
+          <button class="category-tab" data-category="medecine">
+            Médecine
+          </button>
+          <button class="category-tab" data-category="polytechnique">
+            Polytechnique
+          </button>
+        </div>
+        <div id="category-ranking-container">
+          <!-- Le classement par catégorie sera chargé ici -->
+        </div>
+      </div>
+    </main>
+
+    <footer>
+      <p>© 2025 Quiz Concours Côte d'Ivoire. Tous droits réservés.</p>
+    </footer>
+
+    <script src="js/quiz-questions.js"></script>
+    <script src="js/user-stats.js"></script>
+    <script>
+      // Fonctions pour le classement
+      const RankingRenderer = {
+        // Afficher le classement global
+        renderGlobalRanking(container, filter = "all") {
+          const ranking = window.UserStats.getGlobalRanking(50);
+          const currentUser = window.UserStats.getCurrentUser();
+
+          let filteredRanking = ranking;
+          if (filter === "week") {
+            // Filtrer pour la semaine (implémentation basique)
+            filteredRanking = ranking; // À améliorer avec des dates réelles
+          } else if (filter === "month") {
+            // Filtrer pour le mois (implémentation basique)
+            filteredRanking = ranking; // À améliorer avec des dates réelles
+          }
+
+          container.innerHTML = `
+                    <div class="ranking-list">
+                        ${filteredRanking
+                          .map(
+                            (user) => `
+                            <div class="ranking-item ${
+                              user.userId === currentUser ? "current-user" : ""
+                            }">
+                                <div class="rank">${user.rank}</div>
+                                <div class="user-info">
+                                    <div class="username">${user.username}</div>
+                                    <div class="user-stats">
+                                        <span class="points">${
+                                          user.totalPoints
+                                        } pts</span>
+                                        <span class="quizzes">${
+                                          user.totalQuizzes
+                                        } quiz</span>
+                                        <span class="average">${
+                                          user.averageScore
+                                        }% moy</span>
+                                    </div>
+                                </div>
+                                <div class="badge">
+                                    ${
+                                      user.rank === 1
+                                        ? "🥇"
+                                        : user.rank === 2
+                                        ? "🥈"
+                                        : user.rank === 3
+                                        ? "🥉"
+                                        : ""
+                                    }
+                                </div>
+                            </div>
+                        `
+                          )
+                          .join("")}
+                    </div>
+                `;
+        },
+
+        // Afficher la position de l'utilisateur
+        renderUserRanking(container) {
+          const userStats = window.UserStats.getUserStats();
+          const userRank = window.UserStats.getUserRank();
+          const ranking = window.UserStats.getGlobalRanking();
+          const userInRanking = ranking.find(
+            (rank) => rank.userId === window.UserStats.getCurrentUser()
+          );
+
+          container.innerHTML = `
+                    <div class="user-ranking-card">
+                        <div class="user-rank-badge">
+                            <div class="rank-number">${userRank || "N/A"}</div>
+                            <div class="rank-label">Votre Rang</div>
+                        </div>
+                        <div class="user-ranking-info">
+                            <div class="username">${userStats.username}</div>
+                            <div class="ranking-stats">
+                                <div class="ranking-stat">
+                                    <span class="stat-value">${
+                                      userStats.totalPoints
+                                    }</span>
+                                    <span class="stat-label">Points</span>
+                                </div>
+                                <div class="ranking-stat">
+                                    <span class="stat-value">${
+                                      userStats.totalQuizzes
+                                    }</span>
+                                    <span class="stat-label">Quiz</span>
+                                </div>
+                                <div class="ranking-stat">
+                                    <span class="stat-value">${
+                                      userStats.averageScore
+                                    }%</span>
+                                    <span class="stat-label">Moyenne</span>
+                                </div>
+                                <div class="ranking-stat">
+                                    <span class="stat-value">${
+                                      userStats.bestScore
+                                    }%</span>
+                                    <span class="stat-label">Meilleur</span>
+                                </div>
+                            </div>
+                        </div>
+                        ${
+                          userInRanking && userInRanking.rank <= 3
+                            ? `
+                            <div class="user-trophy">
+                                ${
+                                  userInRanking.rank === 1
+                                    ? "🥇"
+                                    : userInRanking.rank === 2
+                                    ? "🥈"
+                                    : "🥉"
+                                }
+                            </div>
+                        `
+                            : ""
+                        }
+                    </div>
+                `;
+        },
+      };
+
+      // Charger le classement quand la page est prête
+      document.addEventListener("DOMContentLoaded", function () {
+        // Classement global
+        RankingRenderer.renderGlobalRanking(
+          document.getElementById("ranking-container")
+        );
+
+        // Position utilisateur
+        RankingRenderer.renderUserRanking(
+          document.getElementById("user-ranking-container")
+        );
+
+        // Gestion des filtres
+        document.querySelectorAll(".filter-btn").forEach((btn) => {
+          btn.addEventListener("click", function () {
+            document
+              .querySelectorAll(".filter-btn")
+              .forEach((b) => b.classList.remove("active"));
+            this.classList.add("active");
+
+            const filter = this.dataset.filter;
+            RankingRenderer.renderGlobalRanking(
+              document.getElementById("ranking-container"),
+              filter
+            );
+          });
+        });
+
+        // Gestion des onglets de catégories
+        document.querySelectorAll(".category-tab").forEach((tab) => {
+          tab.addEventListener("click", function () {
+            document
+              .querySelectorAll(".category-tab")
+              .forEach((t) => t.classList.remove("active"));
+            this.classList.add("active");
+            // Implémenter le filtrage par catégorie ici
+          });
+        });
+      });
+    </script>
+  </body>
+</html>

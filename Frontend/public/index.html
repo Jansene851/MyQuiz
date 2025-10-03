@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>
+      Quiz Concours - Côte d'Ivoire | Préparation aux Concours Nationaux
+    </title>
+    <meta
+      name="description"
+      content="Plateforme de préparation aux concours nationaux ivoiriens. Quiz, tests et ressources pour ENA, ENS, Médecine, Police et plus encore."
+    />
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header role="banner">
+      <div class="logo">
+        <h1>🌐 Quiz Concours Côte d'Ivoire</h1>
+      </div>
+      <nav role="navigation" aria-label="Navigation principale">
+        <a href="#" class="active" aria-current="page">Accueil</a>
+        <a href="historique.html">Mes Stats</a>
+        <a href="ranking.html">Classement</a>
+      </nav>
+    </header>
+
+    <main role="main">
+      <!-- Section Hero -->
+      <section class="hero" aria-labelledby="hero-title">
+        <h2 id="hero-title">Préparez votre avenir</h2>
+        <p>
+          Testez vos connaissances et entraînez-vous pour les concours nationaux
+          ivoiriens
+        </p>
+      </section>
+
+      <!-- Section Informations Concours Unifiée -->
+      <section
+        class="concours-info-section"
+        aria-labelledby="concours-info-title"
+      >
+        <div class="section-header">
+          <h2 id="concours-info-title">📋 Informations sur les Concours</h2>
+          <p>
+            Toutes les informations essentielles pour bien préparer votre
+            concours
+          </p>
+        </div>
+
+        <div class="info-container">
+          <!-- Filtre par catégorie -->
+          <div class="filter-container">
+            <label for="category-filter">Filtrer par catégorie :</label>
+            <select
+              id="category-filter"
+              aria-label="Filtrer les concours par catégorie"
+            >
+              <option value="all">Tous les concours</option>
+              <option value="administratif">Administratif</option>
+              <option value="sante">Santé</option>
+              <option value="technique">Technique</option>
+              <option value="juridique">Juridique</option>
+              <option value="securite">Sécurité</option>
+              <option value="general">Général</option>
+            </select>
+          </div>
+
+          <!-- Liste des concours -->
+          <div
+            class="concours-list"
+            id="concours-list"
+            role="list"
+            aria-label="Liste des concours"
+          >
+            <!-- Les informations seront injectées ici par JavaScript -->
+          </div>
+
+          <!-- Modal pour les détails -->
+          <div
+            id="info-modal"
+            class="modal"
+            role="dialog"
+            aria-labelledby="modal-title"
+            aria-hidden="true"
+          >
+            <div class="modal-content">
+              <button class="close-modal" aria-label="Fermer la fenêtre">
+                &times;
+              </button>
+              <div id="modal-content">
+                <!-- Contenu du modal chargé dynamiquement -->
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Section Grille des Concours -->
+      <section class="concours-grid" aria-labelledby="concours-grid-title">
+        <h2 id="concours-grid-title">Choisissez votre Concours</h2>
+        <div class="grid-container" role="grid">
+          <!-- Les cartes de concours seront générées dynamiquement -->
+        </div>
+      </section>
+
+      <!-- Section Témoignages -->
+      <section
+        class="testimonials-section"
+        aria-labelledby="testimonials-title"
+      >
+        <h2 id="testimonials-title">Ils nous font confiance</h2>
+        <p class="section-subtitle">
+          Découvrez les expériences de ceux qui préparent leur avenir avec nous
+        </p>
+
+        <div
+          class="testimonials-grid"
+          role="list"
+          aria-label="Témoignages des utilisateurs"
+        >
+          <!-- Témoignages générés dynamiquement -->
+        </div>
+
+        <!-- Section Impact -->
+        <div class="impact-section">
+          <div class="impact-grid">
+            <div class="impact-card" role="listitem">
+              <div class="impact-icon" aria-hidden="true">📰</div>
+              <h4>Dans les médias</h4>
+              <p>
+                "Une plateforme innovante pour la préparation aux concours en
+                Côte d'Ivoire"
+              </p>
+              <span class="media-source">- Le Nouveau Courrier</span>
+            </div>
+
+            <div class="impact-card" role="listitem">
+              <div class="impact-icon" aria-hidden="true">🏆</div>
+              <h4>Reconnaissance</h4>
+              <p>Partenaire officiel de préparation aux concours nationaux</p>
+              <span class="media-source"
+                >- Ministère de la Fonction Publique</span
+              >
+            </div>
+
+            <div class="impact-card" role="listitem">
+              <div class="impact-icon" aria-hidden="true">🌍</div>
+              <h4>Communauté active</h4>
+              <p>
+                Plus de 50,000 questions maîtrisées par notre communauté
+                d'apprenants
+              </p>
+              <span class="media-source">- Données 2024</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- CTA Témoignages -->
+        <div class="cta-testimonials">
+          <div class="cta-content">
+            <h3>Votre réussite nous inspire</h3>
+            <p>
+              Partagez votre expérience et aidez d'autres candidats à réussir
+            </p>
+            <button class="cta-button" onclick="shareExperience()">
+              Partager mon expérience
+            </button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer role="contentinfo">
+      <p>© 2025 Quiz Concours Côte d'Ivoire. Tous droits réservés.</p>
+    </footer>
+
+    <!-- Chargement optimisé des scripts -->
+    <script src="js/concours-data.js"></script>
+    <script src="js/concours-info.js"></script>
+    <script src="js/quiz-questions.js"></script>
+    <script src="js/user-stats.js"></script>
+    <script src="js/home.js"></script>
+  </body>
+</html>

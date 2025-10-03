@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Quiz - Concours Côte d'Ivoire</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo">
+        <h1 id="quiz-title">🌐 Quiz Concours</h1>
+      </div>
+      <nav>
+        <a href="index.html">Accueil</a>
+        <a href="#">Tous les Concours</a>
+      </nav>
+    </header>
+
+    <main>
+      <div class="quiz-container">
+        <div class="quiz-header">
+          <div class="progress-info">
+            <div class="question-counter">
+              Questions: <span id="current-question">0</span>/<span
+                id="total-questions"
+                >0</span
+              >
+            </div>
+            <div class="answered-counter">
+              Répondu: <span id="answered-count">0</span>
+            </div>
+          </div>
+          <div class="quiz-controls">
+            <button id="validate-btn" class="nav-btn primary" disabled>
+              Valider le Quiz
+            </button>
+            <button id="restart-btn" class="nav-btn secondary">
+              Nouveau Quiz
+            </button>
+          </div>
+        </div>
+
+        <!-- Container pour toutes les questions -->
+        <div class="all-questions-container" id="all-questions-container">
+          <!-- Les questions seront générées dynamiquement ici -->
+        </div>
+
+        <!-- Bouton de validation fixe en bas -->
+        <div class="fixed-validation">
+          <button
+            id="fixed-validate-btn"
+            class="nav-btn primary large"
+            disabled
+          >
+            ✅ Valider le Quiz (<span id="answered-count-fixed">0</span>/<span
+              id="total-questions-fixed"
+              >0</span
+            >)
+          </button>
+        </div>
+      </div>
+    </main>
+
+    <!-- Modal des résultats détaillés -->
+    <div class="modal-container" id="results-modal">
+      <div class="modal-content large">
+        <h2>📊 Résultats du Quiz</h2>
+
+        <div class="results-summary">
+          <div class="score-circle">
+            <div class="score-percentage" id="score-percentage">0%</div>
+            <div class="score-text">Score</div>
+          </div>
+          <div class="results-stats">
+            <div class="stat-item correct">
+              <span class="stat-number" id="correct-count">0</span>
+              <span class="stat-label">Bonnes réponses</span>
+            </div>
+            <div class="stat-item incorrect">
+              <span class="stat-number" id="incorrect-count">0</span>
+              <span class="stat-label">Mauvaises réponses</span>
+            </div>
+            <div class="stat-item unanswered">
+              <span class="stat-number" id="unanswered-count">0</span>
+              <span class="stat-label">Non répondues</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="detailed-results" id="detailed-results">
+          <!-- Les résultats détaillés seront injectés ici -->
+        </div>
+
+        <div class="modal-actions">
+          <button id="review-btn" class="modal-btn secondary">
+            📝 Revoir les réponses
+          </button>
+          <button id="new-quiz-btn" class="modal-btn primary">
+            🔄 Nouveau Quiz
+          </button>
+          <button id="home-btn" class="modal-btn">🏠 Page d'accueil</button>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <p>© 2025 Quiz Concours Côte d'Ivoire. Tous droits réservés.</p>
+    </footer>
+
+    <script src="js/quiz-questions.js"></script>
+    <script src="js/quiz-app.js"></script>
+  </body>
+</html>

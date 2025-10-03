@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="fr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Mes Statistiques - Quiz Concours Côte d'Ivoire</title>
+    <meta
+      name="description"
+      content="Suivez votre progression et vos performances dans la préparation aux concours ivoiriens"
+    />
+    <link rel="stylesheet" href="styles.css" />
+    <script src="https://code.highcharts.com/highcharts.js"></script>
+    <script src="https://code.highcharts.com/modules/exporting.js"></script>
+    <script src="https://code.highcharts.com/modules/export-data.js"></script>
+    <script src="https://code.highcharts.com/modules/accessibility.js"></script>
+  </head>
+  <body>
+    <header role="banner">
+      <div class="logo">
+        <h1>📈 Mes Statistiques</h1>
+      </div>
+      <nav role="navigation" aria-label="Navigation principale">
+        <a href="index.html">Accueil</a>
+        <a href="quiz.html">Nouveau Quiz</a>
+        <a href="historique.html" class="active" aria-current="page"
+          >Mes Statistiques</a
+        >
+      </nav>
+    </header>
+
+    <main role="main">
+      <div class="stats-container">
+        <!-- Section de bienvenue et stats globales -->
+        <section class="stats-header" aria-labelledby="stats-title">
+          <div class="user-welcome">
+            <h2 id="stats-title">Vos Performances</h2>
+            <p>Suivez votre progression dans la préparation aux concours</p>
+          </div>
+          <div class="global-stats">
+            <div class="global-stat-card">
+              <div class="stat-icon" aria-hidden="true">🎯</div>
+              <div class="stat-content">
+                <div class="stat-value" id="total-tests" aria-live="polite">
+                  0
+                </div>
+                <div class="stat-label">Tests complétés</div>
+              </div>
+              <div class="progress-bar">
+                <div
+                  class="progress-fill"
+                  id="tests-progress"
+                  style="width: 0%"
+                ></div>
+              </div>
+            </div>
+            <div class="global-stat-card">
+              <div class="stat-icon" aria-hidden="true">📈</div>
+              <div class="stat-content">
+                <div class="stat-value" id="average-score" aria-live="polite">
+                  0%
+                </div>
+                <div class="stat-label">Moyenne générale</div>
+              </div>
+              <div class="progress-bar">
+                <div
+                  class="progress-fill"
+                  id="accuracy-progress"
+                  style="width: 0%"
+                ></div>
+              </div>
+            </div>
+            <div class="global-stat-card">
+              <div class="stat-icon" aria-hidden="true">⏱️</div>
+              <div class="stat-content">
+                <div class="stat-value" id="total-time" aria-live="polite">
+                  0h
+                </div>
+                <div class="stat-label">Temps total</div>
+              </div>
+              <div class="progress-bar">
+                <div
+                  class="progress-fill"
+                  id="time-progress"
+                  style="width: 0%"
+                ></div>
+              </div>
+            </div>
+            <div class="global-stat-card">
+              <div class="stat-icon" aria-hidden="true">🏆</div>
+              <div class="stat-content">
+                <div class="stat-value" id="best-score">0%</div>
+                <div class="stat-label">Meilleur score</div>
+              </div>
+              <div class="progress-bar">
+                <div
+                  class="progress-fill"
+                  id="best-progress"
+                  style="width: 0%"
+                ></div>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Graphiques des statistiques -->
+        <section class="charts-section" aria-labelledby="charts-title">
+          <h3 id="charts-title" class="visually-hidden">
+            Graphiques de performance
+          </h3>
+          <div class="chart-row">
+            <div class="chart-container">
+              <h4>Performance des 10 derniers tests</h4>
+              <div
+                id="performance-chart"
+                style="width: 100%; height: 300px"
+                role="img"
+                aria-label="Graphique montrant l'évolution de vos scores sur les 10 derniers tests"
+              ></div>
+            </div>
+            <div class="chart-container">
+              <h4>Moyenne par type de concours</h4>
+              <div
+                id="category-chart"
+                style="width: 100%; height: 300px"
+                role="img"
+                aria-label="Graphique en colonnes montrant vos scores moyens par type de concours"
+              ></div>
+            </div>
+          </div>
+
+          <div class="chart-row">
+            <div class="chart-container">
+              <h4>Progression mensuelle</h4>
+              <div
+                id="progress-chart"
+                style="width: 100%; height: 300px"
+                role="img"
+                aria-label="Graphique de progression montrant l'évolution de vos scores moyens par mois"
+              ></div>
+            </div>
+            <div class="chart-container">
+              <h4>Temps par test</h4>
+              <div
+                id="time-chart"
+                style="width: 100%; height: 300px"
+                role="img"
+                aria-label="Graphique montrant le temps passé sur chaque test"
+              ></div>
+            </div>
+          </div>
+        </section>
+
+        <!-- Statistiques détaillées par concours -->
+        <section class="category-stats" aria-labelledby="category-stats-title">
+          <div class="section-header">
+            <h3 id="category-stats-title">Performances par Type de Concours</h3>
+            <p>Détail de vos résultats pour chaque catégorie de concours</p>
+          </div>
+          <div
+            class="category-grid"
+            id="category-stats-grid"
+            role="grid"
+            aria-label="Statistiques détaillées par concours"
+          >
+            <!-- Généré dynamiquement -->
+          </div>
+        </section>
+
+        <!-- Historique des tests -->
+        <section class="history-section" aria-labelledby="history-title">
+          <div class="section-header">
+            <div class="section-title">
+              <h3 id="history-title">Historique des Tests</h3>
+              <p>Retrouvez tous vos tests précédents</p>
+            </div>
+            <div class="history-filters">
+              <div class="filter-group">
+                <label for="filter-category" class="filter-label"
+                  >Concours</label
+                >
+                <select
+                  id="filter-category"
+                  class="filter-select"
+                  aria-label="Filtrer par type de concours"
+                >
+                  <option value="all">Tous les concours</option>
+                  <option value="ena">ENA</option>
+                  <option value="ens">ENS</option>
+                  <option value="medecine">Médecine</option>
+                  <option value="infirmier">Infirmier</option>
+                  <option value="polytechnique">Polytechnique</option>
+                  <option value="commerce">Commerce</option>
+                  <option value="droit">Droit</option>
+                  <option value="police">Police</option>
+                  <option value="douanes">Douanes</option>
+                  <option value="culture-generale">Culture Générale</option>
+                </select>
+              </div>
+              <div class="filter-group">
+                <label for="filter-date" class="filter-label">Période</label>
+                <select
+                  id="filter-date"
+                  class="filter-select"
+                  aria-label="Filtrer par période"
+                >
+                  <option value="all">Toute période</option>
+                  <option value="today">Aujourd'hui</option>
+                  <option value="week">Cette semaine</option>
+                  <option value="month">Ce mois</option>
+                  <option value="year">Cette année</option>
+                </select>
+              </div>
+              <div class="filter-group">
+                <label for="search-history" class="filter-label"
+                  >Recherche</label
+                >
+                <input
+                  type="text"
+                  id="search-history"
+                  class="filter-input"
+                  placeholder="Rechercher un test..."
+                  aria-label="Rechercher dans l'historique"
+                />
+              </div>
+            </div>
+          </div>
+
+          <div
+            class="history-list"
+            id="history-list"
+            role="list"
+            aria-label="Liste des tests"
+          >
+            <!-- Généré dynamiquement -->
+          </div>
+
+          <div class="history-actions">
+            <button
+              id="export-btn"
+              class="nav-btn secondary"
+              aria-label="Exporter toutes les données statistiques"
+            >
+              <span class="btn-icon">📊</span>
+              Exporter les données
+            </button>
+            <button
+              id="clear-history-btn"
+              class="nav-btn warning"
+              aria-label="Effacer tout l'historique"
+            >
+              <span class="btn-icon">🗑️</span>
+              Effacer l'historique
+            </button>
+          </div>
+        </section>
+
+        <!-- Section objectifs et recommandations -->
+        <section
+          class="recommendations-section"
+          aria-labelledby="recommendations-title"
+        >
+          <h3 id="recommendations-title">Recommandations Personnalisées</h3>
+          <div class="recommendations-grid" id="recommendations-grid">
+            <!-- Généré dynamiquement -->
+          </div>
+        </section>
+      </div>
+    </main>
+
+    <!-- Modal de confirmation -->
+    <div
+      class="modal-container"
+      id="confirm-modal"
+      role="dialog"
+      aria-labelledby="confirm-title"
+      aria-hidden="true"
+    >
+      <div class="modal-content">
+        <h3 id="confirm-title">Confirmer la suppression</h3>
+        <p>
+          Êtes-vous sûr de vouloir effacer tout votre historique ? Cette action
+          est irréversible et supprimera toutes vos statistiques.
+        </p>
+        <div class="modal-actions">
+          <button id="confirm-clear" class="modal-btn primary">
+            Oui, effacer
+          </button>
+          <button id="cancel-clear" class="modal-btn secondary">Annuler</button>
+        </div>
+      </div>
+    </div>
+
+    <footer role="contentinfo">
+      <p>© 2025 Quiz Concours Côte d'Ivoire. Tous droits réservés.</p>
+    </footer>
+
+    <script src="js/stats-app.js"></script>
+  </body>
+</html>
