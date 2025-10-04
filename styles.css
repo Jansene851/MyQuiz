@@ -3328,4 +3328,386 @@ select:focus-visible {
   height: 100%;
 }
 
+/* ===== STYLES POUR LA PAGE INFORMATIONS CONCOURS ===== */
+
+/* En-tête de la section */
+.concours-info-section .section-header {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+.concours-info-section .section-header h2 {
+  font-size: 2.2rem;
+  margin-bottom: 0.5rem;
+  color: white;
+}
+
+.concours-info-section .section-header p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  color: white;
+}
+
+/* Filtres améliorés */
+.filter-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 2rem;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.filter-label {
+  color: white;
+  font-weight: bold;
+  font-size: 0.9rem;
+}
+
+.filter-select,
+.filter-input {
+  padding: 0.75rem 1rem;
+  border: none;
+  border-radius: 8px;
+  background: white;
+  color: #333;
+  font-size: 1rem;
+  min-width: 200px;
+  cursor: pointer;
+}
+
+.filter-input {
+  min-width: 250px;
+}
+
+/* Grille des concours */
+.concours-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+  gap: 1.5rem;
+  margin-bottom: 3rem;
+}
+
+.concours-card-info {
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 12px;
+  padding: 1.5rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+.concours-card-info:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.2);
+}
+
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 1rem;
+  gap: 1rem;
+}
+
+.card-header h3 {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 1.2rem;
+  flex: 1;
+  line-height: 1.3;
+}
+
+.categorie-badge {
+  padding: 0.4rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.categorie-badge.administratif {
+  background: #3498db;
+  color: white;
+}
+.categorie-badge.enseignement {
+  background: #9b59b6;
+  color: white;
+}
+.categorie-badge.sante {
+  background: #e74c3c;
+  color: white;
+}
+.categorie-badge.technique {
+  background: #f39c12;
+  color: white;
+}
+.categorie-badge.commerce {
+  background: #1abc9c;
+  color: white;
+}
+.categorie-badge.juridique {
+  background: #34495e;
+  color: white;
+}
+.categorie-badge.securite {
+  background: #e67e22;
+  color: white;
+}
+.categorie-badge.general {
+  background: #27ae60;
+  color: white;
+}
+
+.card-description {
+  color: #666;
+  margin-bottom: 1.5rem;
+  line-height: 1.5;
+  font-size: 0.9rem;
+}
+
+.card-details {
+  margin-bottom: 1.5rem;
+}
+
+.detail-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid #f0f0f0;
+}
+
+.detail-label {
+  font-weight: 600;
+  color: #555;
+  font-size: 0.9rem;
+}
+
+.detail-value {
+  color: #2c3e50;
+  text-align: right;
+  font-size: 0.9rem;
+  font-weight: 500;
+}
+
+.btn-details {
+  width: 100%;
+  padding: 1rem;
+  background: linear-gradient(135deg, #667eea, #764ba2);
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  text-align: center;
+}
+
+.btn-details:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+/* Détails complets d'un concours */
+.concours-info {
+  background: white;
+  border-radius: 12px;
+  padding: 2rem;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+  margin-top: 2rem;
+}
+
+.info-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 2rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #f0f0f0;
+}
+
+.info-header h3 {
+  margin: 0;
+  color: #2c3e50;
+  font-size: 1.5rem;
+  flex: 1;
+}
+
+.info-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.info-item {
+  background: #f8f9fa;
+  padding: 1.5rem;
+  border-radius: 8px;
+  border-left: 4px solid #3498db;
+}
+
+.info-item h4 {
+  margin: 0 0 1rem 0;
+  color: #2c3e50;
+  font-size: 1.1rem;
+}
+
+.info-section {
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background: #f8f9fa;
+  border-radius: 8px;
+}
+
+.info-section h4 {
+  margin: 0 0 1rem 0;
+  color: #2c3e50;
+  font-size: 1.1rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.info-section ul {
+  margin: 0;
+  padding-left: 1.5rem;
+}
+
+.info-section li {
+  margin-bottom: 0.5rem;
+  line-height: 1.5;
+  color: #555;
+}
+
+.info-section li:last-child {
+  margin-bottom: 0;
+}
+
+.liens-utiles {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.lien-concours {
+  display: inline-block;
+  padding: 0.75rem 1.5rem;
+  background: #3498db;
+  color: white;
+  text-decoration: none;
+  border-radius: 6px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.lien-concours:hover {
+  background: #2980b9;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(52, 152, 219, 0.3);
+}
+
+/* États de message */
+.no-selection,
+.no-results {
+  text-align: center;
+  padding: 3rem 2rem;
+  color: white;
+  background: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  backdrop-filter: blur(10px);
+  border: 2px dashed rgba(255, 255, 255, 0.3);
+}
+
+.no-selection p,
+.no-results p {
+  margin: 0.5rem 0;
+  font-size: 1.1rem;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .concours-info-section .section-header h2 {
+    font-size: 1.8rem;
+  }
+
+  .filter-container {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .filter-select,
+  .filter-input {
+    min-width: auto;
+    width: 100%;
+  }
+
+  .concours-list {
+    grid-template-columns: 1fr;
+  }
+
+  .card-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .categorie-badge {
+    align-self: flex-start;
+    margin-top: 0.5rem;
+  }
+
+  .info-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .info-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .info-header h3 {
+    margin-bottom: 1rem;
+  }
+
+  .liens-utiles {
+    flex-direction: column;
+  }
+
+  .lien-concours {
+    text-align: center;
+  }
+}
+
+@media (max-width: 480px) {
+  .concours-info {
+    padding: 1.5rem;
+  }
+
+  .info-item,
+  .info-section {
+    padding: 1rem;
+  }
+
+  .card-details .detail-item {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.25rem;
+  }
+
+  .detail-value {
+    text-align: left;
+  }
+}
 /* ===== FIN DU CSS COMPLET ===== */
